@@ -12,7 +12,7 @@ class Solution
                 if (j < i) break;
                 sum += people[i];
                 if (i != j) sum += people[j];
-                if (sum == limit)
+                if (sum <= limit)
                 {
                     count++;
                     sum = 0;
@@ -22,12 +22,6 @@ class Solution
                 {
                     sum = 0;
                     count++;
-                }
-                else
-                {
-                    sum = 0;
-                    count++;
-                    j--;
                 }
             }
             return count;
