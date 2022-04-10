@@ -9,8 +9,7 @@ class Solution
             {
                 if (ops[i][0] != 'C' && ops[i][0] != 'D' && ops[i][0] != '+')
                 {
-                    int x = stoi(ops[i]);
-                    v.push_back(x);
+                    v.push_back(stoi(ops[i]));
                     idx++;
                 }
                 else if (ops[i][0] == '+')
@@ -31,7 +30,6 @@ class Solution
             }
             int sum = 0;
             for(auto i : v){
-                cout << i << endl;
                 sum += i;
             }
             return sum;
