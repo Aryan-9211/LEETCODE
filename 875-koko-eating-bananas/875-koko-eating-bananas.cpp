@@ -16,7 +16,7 @@ class Solution
     int minEatingSpeed(vector<int> &v, int h)
     {
         int lo = 1, hi = 1e9, mid;
-        while (hi - lo > 1)
+        while (hi - lo >= 1)
         {
             mid = lo + (hi - lo) / 2;
             if (check(v, h, mid))
@@ -28,7 +28,6 @@ class Solution
                 lo = mid + 1;
             }
         }
-        if (check(v, h, lo)) return lo;
         return hi;
     }
 };
