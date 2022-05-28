@@ -19,7 +19,6 @@ class Solution
         while (hi - lo > 1)
         {
             mid = lo + (hi - lo) / 2;
-            // cout << lo << " " << hi << " " << mid << endl;
             if (check(v, h, mid))
             {
                 hi = mid;
@@ -30,7 +29,6 @@ class Solution
             }
         }
         if (check(v, h, lo)) return lo;
-        if (check(v, h, hi)) return hi;
-        return 0;
+        return hi;
     }
 };
