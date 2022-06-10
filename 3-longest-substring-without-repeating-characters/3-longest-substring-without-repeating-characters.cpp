@@ -6,9 +6,8 @@ class Solution
             int max = 0;
             map<char, int> m;
             int ct = 0;
-            int n = s.size();
             int j = 0;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < s.size(); i++)
             {
                 if (m[s[i]] == 0)
                 {
@@ -29,7 +28,6 @@ class Solution
                     }
                     j = j + 1;
                 }
-                cout << j << " " << s[i] << " " << ct << " " << max << endl;
             }
             return max;
         }
