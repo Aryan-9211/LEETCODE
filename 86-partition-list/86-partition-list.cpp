@@ -10,31 +10,41 @@
  */
 class Solution
 {
+    void print(ListNode *head)
+    {
+        while (head != NULL)
+        {
+            cout << head->val << endl;
+            head = head->next;
+        }
+    }
 
     public:
         ListNode* partition(ListNode *head, int x)
         {
-            vector<int> v;
-            ListNode *curr = head;
-            while (curr != NULL)
+            ListNode *left = new ListNode(0);
+            ListNode *right = new ListNode(0);
+            ListNode *ls = left;
+            ListNode *rs = right;
+
+            while (head != NULL)
             {
-                if (curr->val < x) v.push_back(curr->val);
-                curr = curr->next;
+                if (head->val < x)
+                {
+                    left->next = head;
+                    left = left->next;
+                }
+                else
+                {
+                    right->next = head;
+                    right = right->next;
+                }
+                head = head->next;
             }
-           	curr = head;
-           	while (curr != NULL)
-           	{
-           	    if (curr->val >= x) v.push_back(curr->val);
-           	    curr = curr->next;
-           	}
-            for (auto i: v) cout << i << " ";
-           	curr = head;
-           	int i = 0;
-           	while(curr != NULL){
-           	    curr->val = v[i];
-                curr = curr->next;
-           	    i++;
-           	}
-            return head;
+            
+            left->next = rs->next;
+            right->next = NULL;
+            
+            return ls->next;
         }
 };
