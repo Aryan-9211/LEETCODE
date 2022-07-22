@@ -10,15 +10,6 @@
  */
 class Solution
 {
-    void print(ListNode *head)
-    {
-        while (head != NULL)
-        {
-            cout << head->val << endl;
-            head = head->next;
-        }
-    }
-
     public:
         ListNode* partition(ListNode *head, int x)
         {
