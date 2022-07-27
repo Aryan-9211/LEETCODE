@@ -24,10 +24,6 @@ class Solution
     int getMinimumDifference(TreeNode *root)
     {
         inorder(root);
-        for (auto i: inOrder)
-        {
-            cout << i << " ";
-        }
         int n = inOrder.size();
         int minDiff = INT_MAX;
         for (int i = 1; i < n; i++)
