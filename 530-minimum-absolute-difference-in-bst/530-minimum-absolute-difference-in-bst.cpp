@@ -1,40 +1,40 @@
 /**
  *Definition for a binary tree node.
  *struct TreeNode {
- *   int val;
- *   TreeNode * left;
- *   TreeNode * right;
- *   TreeNode() : val(0), left(nullptr), right(nullptr) {}
- *   TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *   TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *int val;
+ *TreeNode * left;
+ *TreeNode * right;
+ *TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  *};
  */
 class Solution
 {
     public:
-        vector<int> v;
+        vector<int> inOrder;
     void inorder(TreeNode *root)
     {
-        if (root != NULL)
-        {
-            inorder(root->left);
-            v.push_back(root->val);
-            inorder(root->right);
-        }
+        if (!root)
+            return;
+        inorder(root->left);
+        inOrder.push_back(root->val);
+        inorder(root->right);
     }
-
     int getMinimumDifference(TreeNode *root)
     {
         inorder(root);
-        int n = v.size();
-        int ans = INT_MAX;
-        for (int i = 0; i < n; i++)
+        for (auto i: inOrder)
         {
-            for (int j = i + 1; j < n; j++)
-            {
-                if (abs(v[i] - v[j]) < ans) ans = abs(v[i] - v[j]);
-            }
+            cout << i << " ";
         }
-        return ans;
+        int n = inOrder.size();
+        int minDiff = INT_MAX;
+        for (int i = 1; i < n; i++)
+        {
+            minDiff = min(minDiff, abs(inOrder[i] - inOrder[i - 1]));
+        }
+
+        return minDiff;
     }
 };
