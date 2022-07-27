@@ -12,25 +12,22 @@
 class Solution
 {
     public:
-        vector<int> inOrder;
+        int minDiff = INT_MAX, prev = -1;
     void inorder(TreeNode *root)
     {
         if (!root)
             return;
         inorder(root->left);
-        inOrder.push_back(root->val);
+        if (prev >= 0)
+        {
+            minDiff = min(minDiff, root->val - prev);
+        }
+        prev = root->val;
         inorder(root->right);
     }
     int getMinimumDifference(TreeNode *root)
     {
         inorder(root);
-        int n = inOrder.size();
-        int minDiff = INT_MAX;
-        for (int i = 1; i < n; i++)
-        {
-            minDiff = min(minDiff, abs(inOrder[i] - inOrder[i - 1]));
-        }
-
         return minDiff;
     }
 };
