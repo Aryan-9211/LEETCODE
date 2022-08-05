@@ -17,18 +17,16 @@ class Solution
             vector<string> v;
             return v;
         }
-        string s = keypad[(digits[0] - '0') - 2];
-        string t = digits.substr(1);
-        vector<string> res = letterCombinations(t);
+        vector<string> res = letterCombinations(digits.substr(1));
         if(res.size() == 0){
             res.push_back("");
         }
         vector<string> ans;
-        for (int i = 0; i < s.size(); i++)
+        for (int i = 0; i < keypad[(digits[0] - '0') - 2].size(); i++)
         {
             for (auto j: res)
             {
-                ans.push_back(s[i] + j);
+                ans.push_back(keypad[(digits[0] - '0') - 2][i] + j);
             }
         }
         return ans;
