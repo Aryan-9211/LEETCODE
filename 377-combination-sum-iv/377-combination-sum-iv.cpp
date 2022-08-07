@@ -1,22 +1,17 @@
 class Solution
 {
     public:
-        int count(vector<int> &nums, int n, vector<int> &dp)
+        int combinationSum4(vector<int> &nums, int target)
         {
-            if (n == 0) return 1;
-            if (n < 0) return 0;
-            if (dp[n] != -1) return dp[n];
-            int sum = 0;
-            for (auto &i: nums)
+            vector<unsigned int> dp(target + 1, 0);
+            dp[0] = 1;
+            for (int i = 1; i <= target; i++)
             {
-                sum += count(nums, n - i, dp);
+                for (auto &j: nums)
+                {
+                    if (j <= i) dp[i] += dp[i - j];
+                }
             }
-            dp[n] = sum;
-            return sum;
+            return dp[target];
         }
-    int combinationSum4(vector<int> &nums, int target)
-    {
-        vector<int> dp(target + 1, -1);
-        return count(nums, target, dp);
-    }
 };
