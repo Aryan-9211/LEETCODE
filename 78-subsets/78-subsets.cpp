@@ -1,20 +1,24 @@
 class Solution
 {
     public:
-        vector<vector < int>> subsets(vector<int> &nums)
+        void solve(vector<vector < int>> &v, int idx, vector< int > &nums, vector< int > &subset)
         {
-            int n = nums.size();
-            int subset_size = 1 << n;
-            vector<vector < int>> subsets;
-            for (int i = 0; i < subset_size; i++)
+            if (idx == nums.size())
             {
-                vector<int> subset;
-                for (int j = 0; j < n; j++)
-                {
-                    if (i &(1 << j)) subset.push_back(nums[j]);
-                }
-                subsets.push_back(subset);
+                v.push_back(subset);
+                return;
             }
-            return subsets;
+            solve(v, idx + 1, nums, subset);
+            subset.push_back(nums[idx]);
+            solve(v, idx + 1, nums, subset);
+            subset.pop_back();
         }
+
+    vector<vector < int>> subsets(vector<int> &nums)
+    {
+        vector<vector < int>> ans;
+        vector<int> subset;
+        solve(ans, 0, nums, subset);
+        return ans;
+    }
 };
