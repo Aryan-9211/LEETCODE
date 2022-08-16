@@ -3,14 +3,14 @@ class Solution
     public:
         int firstUniqChar(string s)
         {
-            unordered_map<char, int> m;
+            int m[26] = {0};
             for (int i = 0; i < s.size(); i++)
             {
-                m[s[i]]++;
+                m[s[i] - 'a']++;
             }
             for (int i = 0; i < s.size(); i++)
             {
-                if (m[s[i]] == 1)
+                if (m[s[i] - 'a'] == 1)
                 {
                     return i;
                 }
