@@ -3,7 +3,7 @@ class Solution
     public:
         int firstUniqChar(string s)
         {
-            map<char, int> m;
+            unordered_map<char, int> m;
             for (auto i: s)
             {
                 m[i]++;
