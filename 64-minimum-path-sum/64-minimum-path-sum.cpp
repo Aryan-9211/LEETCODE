@@ -1,10 +1,10 @@
 class Solution {
 public:
-    int cost(vector<vector<int>> &grid,int i, int j, vector<vector<int>> &dp){
-        if(i == 0 && j == 0) return grid[0][0];
-        if(i < 0 || j < 0) return INT_MAX;
+    int cost(vector<vector<int>> &grid,int i, int j, vector<vector<int>> &dp, int n, int m){
+        if(i == n - 1 && j == m - 1) return grid[n - 1][m - 1];
+        if(i > n - 1 ||  j > m - 1) return INT_MAX;
         if(dp[i][j] != -1) return dp[i][j];
-        dp[i][j] = grid[i][j] + min(cost(grid, i - 1, j, dp), cost(grid, i, j - 1, dp));
+        dp[i][j] = grid[i][j] + min(cost(grid, i + 1, j, dp, n, m), cost(grid, i, j + 1, dp, n, m));
         return dp[i][j];
     }
     
@@ -12,6 +12,6 @@ public:
         int n = grid.size();
         int m = grid[0].size();
         vector<vector<int>> dp(n, vector<int>(m, -1));
-        return cost(grid, n - 1, m - 1, dp);
+        return cost(grid, 0, 0, dp, n, m);
     }
 };
