@@ -1,18 +1,22 @@
 class Solution {
 public:
-    int recur(string s, int i , int j, vector<vector<int>>& dp){
-        if(i >= j) return 1;
-        if(dp[i][j] != -1) return dp[i][j];
-        return dp[i][j] = (s[i] == s[j]) ? recur(s, i + 1, j - 1, dp) : 0;
-    }
     int countSubstrings(string s) {
-        int ans = 0;
         int n = s.size();
-        vector<vector<int>> dp(n + 1, vector<int>(n + 1, -1));
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+        int ans = 0;
         for(int i = 0; i < n; i++){
-            for(int j = i; j < n; j++){
-                ans += recur(s, i, j, dp);
-            }
+            for(int j = i; j >= 0; j--){
+                if(i == j){
+                    dp[i][j] = 1;
+                }
+                else if(abs(i - j) == 1){
+                    dp[i][j] = (s[i] == s[j]) ? 1 : 0;
+                }
+                else {
+                    dp[i][j] = (s[i] == s[j]) ? dp[i - 1][j + 1] : 0;
+                }
+                ans += dp[i][j];
+            }   
         }
         return ans;
     }
