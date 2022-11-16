@@ -16,10 +16,10 @@ public:
             // cout << lo << " " << hi << " " << mid << endl;
             int g = guess(mid);
             if(g == -1){
-                hi = mid;
+                hi = mid - 1;
             }
             else if(g == 1){
-                lo = mid;
+                lo = mid + 1;
             }
             else return mid;
         }
