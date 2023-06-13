@@ -123,17 +123,23 @@ struct Node
     struct Node* right;
 }; */
 
-vector<int> ans;
-void f(Node* root){
-    if(root == NULL) return;
-    
-    f(root->left);
-    f(root->right);
-    ans.push_back(root->data);
-}
+//Function to return a list containing the postorder traversal of the tree.
 vector <int> postOrder(Node* root)
 {
-  ans.clear();
-   f(root);
-   return ans;
+  // Your code here
+  vector<int> ans;
+  if(root == NULL) return ans;
+  stack<Node*> st1, st2;
+  st1.push(root);
+  while(!st1.empty()){
+      root = st1.top();
+      st1.pop();
+      st2.push(root);
+      if(root->left) st1.push(root->left);
+      if(root->right) st1.push(root->right);
+  }
+  while(!st2.empty()){
+      ans.push_back(st2.top()->data); st2.pop();
+  }
+  return ans;
 }
